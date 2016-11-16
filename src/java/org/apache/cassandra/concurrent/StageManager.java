@@ -44,10 +44,10 @@ public class StageManager
 
     static
     {
-        stages.put(Stage.MUTATION, multiThreadedLowSignalStage(Stage.MUTATION, getConcurrentWriters()));
-        stages.put(Stage.COUNTER_MUTATION, multiThreadedLowSignalStage(Stage.COUNTER_MUTATION, getConcurrentCounterWriters()));
-        stages.put(Stage.READ, multiThreadedLowSignalStage(Stage.READ, getConcurrentReaders()));
-        stages.put(Stage.REQUEST_RESPONSE, multiThreadedLowSignalStage(Stage.REQUEST_RESPONSE, FBUtilities.getAvailableProcessors()));
+        stages.put(Stage.MUTATION, multiThreadedStage(Stage.MUTATION, getConcurrentWriters()));
+        stages.put(Stage.COUNTER_MUTATION, multiThreadedStage(Stage.COUNTER_MUTATION, getConcurrentCounterWriters()));
+        stages.put(Stage.READ, multiThreadedStage(Stage.READ, getConcurrentReaders()));
+        stages.put(Stage.REQUEST_RESPONSE, multiThreadedStage(Stage.REQUEST_RESPONSE, FBUtilities.getAvailableProcessors()));
         stages.put(Stage.INTERNAL_RESPONSE, multiThreadedStage(Stage.INTERNAL_RESPONSE, FBUtilities.getAvailableProcessors()));
         // the rest are all single-threaded
         stages.put(Stage.GOSSIP, new JMXEnabledThreadPoolExecutor(Stage.GOSSIP));
