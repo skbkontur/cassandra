@@ -424,6 +424,8 @@ public abstract class Message
 
     public static class Dispatcher extends SimpleChannelInboundHandler<Request>
     {
+        // todo (avk, 2019.11.14): maybe we also need to switch to JMXEnabledThreadPoolExecutor here
+        // in order to reduce request processing latency on Windows for cassandra used for local testing
         private static final LocalAwareExecutorService requestExecutor = SHARED.newExecutor(DatabaseDescriptor.getNativeTransportMaxThreads(),
                                                                                             Integer.MAX_VALUE,
                                                                                             "transport",
