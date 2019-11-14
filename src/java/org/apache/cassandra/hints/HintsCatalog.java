@@ -161,11 +161,12 @@ final class HintsCatalog
                 FileUtils.handleFSErrorAndPropagate(e);
             }
         }
-        else
-        {
-            logger.error("Unable to open directory {}", hintsDirectory.getAbsolutePath());
-            FileUtils.handleFSErrorAndPropagate(new FSWriteError(new IOException(String.format("Unable to open hint directory %s", hintsDirectory.getAbsolutePath())), hintsDirectory.getAbsolutePath()));
-        }
+        // todo (avk, 2019.14.11): we need a proper way to run non-patched cassandra on windows (wsl, docker, whatever)
+        //else
+        //{
+        //    logger.error("Unable to open directory {}", hintsDirectory.getAbsolutePath());
+        //    FileUtils.handleFSErrorAndPropagate(new FSWriteError(new IOException(String.format("Unable to open hint directory %s", hintsDirectory.getAbsolutePath())), hintsDirectory.getAbsolutePath()));
+        //}
     }
 
     ImmutableMap<String, Object> getWriterParams()
